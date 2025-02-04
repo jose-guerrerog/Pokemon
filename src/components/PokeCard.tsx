@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { capitalizeFirstLetter } from "../utils";
 // import { Link } from "react-router-dom";
 
@@ -6,7 +6,6 @@ import { capitalizeFirstLetter } from "../utils";
 
 // import pokemon_placeholder from "../../assets/img/pokemon-placeholder.png";
 import { Pokemon } from "../types";
-import { getImageById } from "../utils";
 import {
   Box,
   Card,
@@ -18,7 +17,7 @@ import {
 import { mapTypeBackground, mapTypeColor } from "../constants";
 
 const PokeCard = ({ name, id, types, image }: Pokemon) => {
-  const [error, setError] = useState(false);
+  const [_, setError] = useState(false);
 
   useEffect(() => {
     setError(false);
