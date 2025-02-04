@@ -67,7 +67,7 @@ const PokeCard = ({ name, id, types, image }: Pokemon) => {
             return (
               <Chip
                 label={
-                  <Typography variant="body1" color='#FFF'>{item.type.name}</Typography>}
+                  <Typography variant="body1" color='#FFF'>{capitalizeFirstLetter(item.type.name)}</Typography>}
                 key={index}
                 sx={{
                   background: mapTypeColor.get(item.type.name),

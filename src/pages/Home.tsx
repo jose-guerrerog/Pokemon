@@ -92,7 +92,7 @@ const Home = () => {
     <>
       <Header />
       {loading || !(pokemons?.length) ? (
-        <>Loading</>
+         <CircularProgress size={20} />
       ) : (
         <InfiniteScroll
           style={{ overflow: "none" }}
@@ -101,7 +101,7 @@ const Home = () => {
           hasMore={pokemons.length < max}
           loader={
             <div className="mb-4 d-flex justify-content-center align-item-center">
-              <CircularProgress />
+              <CircularProgress size={20} />
             </div>
           }
           endMessage={
