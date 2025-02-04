@@ -7,6 +7,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid2";
 import { savePokemons, verifyPokemons } from "../storage";
+import { Box } from "@mui/material";
 
 let pokemonsOriginal: any[] = [];
 const perPage = 25;
@@ -89,7 +90,7 @@ const Home = () => {
   }, []);
   // console.log(pokemons.leng)
   return (
-    <>
+    <Box>
       <Header />
       {loading || !(pokemons?.length) ? (
          <CircularProgress size={20} />
@@ -104,11 +105,6 @@ const Home = () => {
               <CircularProgress size={20} />
             </div>
           }
-          endMessage={
-            <p className="text-light" style={{ textAlign: "center" }}>
-              <b>Yay! You have seen it all</b>
-            </p>
-          }
         >
           <Grid container mt={4} spacing={3}>
             {pokemons.map((p, index) => (
@@ -119,7 +115,7 @@ const Home = () => {
           </Grid>
         </InfiniteScroll>
       )}
-    </>
+    </Box>
   );
 };
 
