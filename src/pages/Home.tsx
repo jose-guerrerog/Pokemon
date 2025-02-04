@@ -84,14 +84,14 @@ const Home = () => {
     }
 
     pokemonsOriginal = listLocal;
-    handlerResult(listLocal.length, listLocal.slice(0, perPage));
+    handlerResult(listLocal?.length, listLocal?.slice(0, perPage));
     setLoading(false)
   }, []);
   // console.log(pokemons.leng)
   return (
     <>
       <Header />
-      {loading ? (
+      {loading || !(pokemons?.length) ? (
         <>Loading</>
       ) : (
         <InfiniteScroll
