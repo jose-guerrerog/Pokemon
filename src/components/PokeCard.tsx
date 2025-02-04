@@ -26,17 +26,18 @@ const PokeCard = ({ name, id, types, image }: Pokemon) => {
   return (
     <Card
       sx={{
-        height: "280px",
+        height: "250px",
         background: mapTypeBackground.get(types[0].type.name),
+        borderRadius: 4,
       }}
     >
       <CardHeader
         title={
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Typography sx={{ color: "#FFFFFF" }}>
+            <Typography variant="h4" sx={{ color: "#FFFFFF" }}>
               {capitalizeFirstLetter(name)}
             </Typography>
-            <Typography sx={{ color: "#FFFFFF" }}>
+            <Typography variant="h4" sx={{ color: "#FFFFFF" }}>
               {`# ${id.toString().padStart(3, "0")}`}
             </Typography>
           </Box>
@@ -49,20 +50,24 @@ const PokeCard = ({ name, id, types, image }: Pokemon) => {
           alt={name}
           title={name}
           src={image}
+          width='80'
+          height='80'
         />
         <Box
           sx={{
             display: "flex",
             flexDirection: "row",
             justifyContent: "flex-start",
-            gap: 1,
+            gap: 0.5,
+            mt: 3,
           }}
         >
           {types.map((item, index) => {
             console.log(item.type.name);
             return (
               <Chip
-                label={item.type.name}
+                label={
+                  <Typography variant="body1" color='#FFF'>{item.type.name}</Typography>}
                 key={index}
                 sx={{
                   background: mapTypeColor.get(item.type.name),
