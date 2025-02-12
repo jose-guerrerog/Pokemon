@@ -6,9 +6,18 @@ export type TypePokemon = {
 }
 
 export type Pokemon = {
-  name: string,
   id: number,
+  name: string,
   types: [TypePokemon],
   number: string,
   image: string,
+}
+
+export type PokemonDetails = {
+  id: number,
+  name: string,
+  types: [TypePokemon],
+  height: number,
+  width: number,
+  stats: [string]
 }
