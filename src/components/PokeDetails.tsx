@@ -2,20 +2,16 @@ import { useState, useEffect } from "react";
 import { capitalizeFirstLetter } from "../utils";
 import Grid from "@mui/material/Grid2";
 import { PokemonDetailComp } from "../types";
-import {
-  Box,
-  Card,
-  CardContent,
-  CardHeader,
-  Typography,
-} from "@mui/material";
+import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
 
 const PokeDetails = ({
   name,
   id,
   height,
   weight,
+  abilities,
   capture_rate,
+  habitat,
 }: PokemonDetailComp) => {
   const [_, setError] = useState(false);
 
@@ -38,31 +34,29 @@ const PokeDetails = ({
         }
       />
       <CardContent>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "flex-start",
-            gap: 0.5,
-            mt: 3,
-          }}
-        >
-          mkmlkmadskmaskld
-        </Box>
         <Grid container>
           <Grid size={6}>
-            <Box>Height</Box>
-            <Box>{`${Math.round(height * 10) / 100} m`}</Box>
+            <Typography variant="h5">Height</Typography>
+            <Typography variant="h6">{`${Math.round(height * 10) / 100} m`}</Typography>
           </Grid>
           <Grid size={6}>
-            <Box>Capture rate</Box>
-            <Box>{`${Math.round(capture_rate * 100) / 100}%`}</Box>
+            <Typography variant="h5">Capture rate</Typography>
+            <Typography variant="h6">{`${
+              Math.round(capture_rate * 100) / 100
+            }%`}</Typography>
           </Grid>
           <Grid size={6}>
-            <Box>Weight</Box>
-            <Box>{`${Math.round(weight * 10) / 100} Kg`}</Box>
+            <Typography variant="h5">Weight</Typography>
+            <Typography variant="h6">{`${Math.round(weight * 10) / 100} Kg`}</Typography>
           </Grid>
-          <Grid size={6}></Grid>
+          <Grid size={6}>
+            <Typography variant="h5">Abilities</Typography>
+            <Typography variant="h6">{abilities}</Typography>
+          </Grid>
+          <Grid size={6}>
+            <Typography variant="h5">Habitat</Typography>
+            <Typography variant="h6">{habitat}</Typography>
+          </Grid>
         </Grid>
       </CardContent>
     </Card>

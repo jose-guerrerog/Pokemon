@@ -4,28 +4,44 @@ import api from "../services/api";
 import { Grid2 } from "@mui/material";
 import { PokemonDetails } from "../types";
 import PokeCard from "../components/PokeCard";
-import { PokemonData } from "../types";
 import PokeDetails from "../components/PokeDetails";
 
-const Details = () => {
-  // const {name} = props.match.params;
+type Item = {
+  ability: {
+    name: string
+  }
+}
 
-  const [pokemonData, setPokemonData] = useState<PokemonData>();
+const Details = () => {
   const [pokemonDetails, setPokemonDetails] = useState<PokemonDetails>();
   const { name } = useParams();
 
-  console.log('name')
-  console.log(name)
-  
   const loadPokemon = async () => {
     try {
-      console.log('name')
-      console.log(name)
       const pokemonData = await api.get(`/pokemon/${name}`);
-      setPokemonData(pokemonData.data);
-      const pokemonDetails = await api.get(`/pokemon-species/${name}`)
-      setPokemonDetails(pokemonDetails.data)
+      const dataPokemonData = pokemonData.data;
+      const pokemonAddDetails = await api.get(`/pokemon-species/${name}`)
+      const dataPokemonAddDetails = pokemonAddDetails.data
 
+      let abilities = '';
+      dataPokemonData.abilities.map((item: Item, index: number) => {
+        abilities += `${item.ability.name}${dataPokemonData.abilities.length === index + 1 ? "" : ", "}`
+      })
+
+      const pokemonDetails = {
+        id: dataPokemonData.id,
+        name: dataPokemonData.name,
+        types: dataPokemonData.types,
+        height: dataPokemonData.height,
+        weight: dataPokemonData.weight,
+        stats: dataPokemonData.stats,
+        image: dataPokemonData.sprites.front_default,
+        gender_rate: dataPokemonAddDetails.gender_rate,
+        capture_rate: dataPokemonAddDetails.capture_rate,
+        habitat: dataPokemonAddDetails.habitat?.name,
+        abilities,
+      }
+      setPokemonDetails(pokemonDetails)
     } catch (error) {
       console.log(error);
     }
@@ -35,26 +51,28 @@ const Details = () => {
     loadPokemon();
   }, []);
 
-  if (!pokemonData || !pokemonDetails) {
+  if (!pokemonDetails) {
     return null;
   }
 
   return (
     <Grid2>
       <PokeCard
-        name={pokemonData?.name || ''}
-        id={pokemonData?.id || 0}
-        types={pokemonData?.types} 
-        image={pokemonData.sprites.front_default}
+        name={pokemonDetails?.name || ''}
+        id={pokemonDetails?.id || 0}
+        types={pokemonDetails?.types} 
+        image={pokemonDetails.image}
         number="2"
       />
       <PokeDetails
-        name={pokemonData?.name || ''}
-        id={pokemonData?.id || 0}
-        types={pokemonData?.types}
+        name={pokemonDetails?.name || ''}
+        id={pokemonDetails?.id || 0}
+        types={pokemonDetails?.types}
         capture_rate={pokemonDetails.capture_rate}
-        height={pokemonData.height}
-        weight={pokemonData.weight}
+        height={pokemonDetails.height}
+        weight={pokemonDetails.weight}
+        abilities={pokemonDetails.abilities}
+        habitat={pokemonDetails.habitat}
       />
     </Grid2>
   );
