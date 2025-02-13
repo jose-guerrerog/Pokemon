@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react";
 import { capitalizeFirstLetter } from "../utils";
 import Grid from "@mui/material/Grid2";
-import { Pokemon, PokemonDetailComp } from "../types";
+import { PokemonDetailComp } from "../types";
 import {
   Box,
   Card,
   CardContent,
   CardHeader,
-  Chip,
   Typography,
 } from "@mui/material";
-import { mapTypeBackground, mapTypeColor } from "../constants";
 
 const PokeDetails = ({
   name,
