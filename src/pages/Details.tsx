@@ -14,6 +14,9 @@ const Details = () => {
   const [pokemonDetails, setPokemonDetails] = useState<PokemonDetails>();
   const { name } = useParams();
 
+  console.log('name')
+  console.log(name)
+  
   const loadPokemon = async () => {
     try {
       console.log('name')
