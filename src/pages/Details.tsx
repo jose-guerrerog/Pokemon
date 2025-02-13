@@ -16,6 +16,8 @@ const Details = () => {
 
   const loadPokemon = async () => {
     try {
+      console.log('name')
+      console.log(name)
       const pokemonData = await api.get(`/pokemon/${name}`);
       setPokemonData(pokemonData.data);
       const pokemonDetails = await api.get(`/pokemon-species/${name}`)
