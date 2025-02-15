@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../services/api";
-import { Grid2 } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import { PokemonDetails } from "../types";
 import PokeCard from "../components/PokeCard";
 import PokeDetails from "../components/PokeDetails";
@@ -56,7 +56,8 @@ const Details = () => {
   }
 
   return (
-    <Grid2>
+    <Grid container>
+      <Grid size={6}>
       <PokeCard
         name={pokemonDetails?.name || ''}
         id={pokemonDetails?.id || 0}
@@ -64,6 +65,8 @@ const Details = () => {
         image={pokemonDetails.image}
         number="2"
       />
+      </Grid>
+      <Grid size={6}>
       <PokeDetails
         name={pokemonDetails?.name || ''}
         id={pokemonDetails?.id || 0}
@@ -74,7 +77,9 @@ const Details = () => {
         abilities={pokemonDetails.abilities}
         habitat={pokemonDetails.habitat}
       />
-    </Grid2>
+      </Grid>
+
+    </Grid>
   );
 };
 
